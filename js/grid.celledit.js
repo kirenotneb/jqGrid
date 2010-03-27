@@ -78,7 +78,7 @@ $.jgrid.extend({
 				}
 				$(cc).html("").append(elc).attr("tabindex","0");
 				window.setTimeout(function () { $(elc).focus();},0);
-				$("input, select, textarea",cc).bind("keydown",function(e) { 
+				$("input, select, textarea",cc).bind("keydown blur",function(e) { 
 					if (e.keyCode === 27) {
 						if($("input.hasDatepicker",cc).length >0) {
 							if( $(".ui-datepicker").is(":hidden") )  $($t).jqGrid("restoreCell",iRow,iCol);
@@ -87,7 +87,7 @@ $.jgrid.extend({
 						else 
 							$($t).jqGrid("restoreCell",iRow,iCol);
 					} //ESC
-					if (e.keyCode === 13) {$($t).jqGrid("saveCell",iRow,iCol);}//Enter
+					if (e.keyCode === 13 || e.type==='blur') {$($t).jqGrid("saveCell",iRow,iCol);}//Enter
 					if (e.keyCode == 9)  {
 						if(!$t.grid.hDiv.loading ) {
 							if (e.shiftKey) {$($t).jqGrid("prevCell",iRow,iCol);} //Shift TAb
